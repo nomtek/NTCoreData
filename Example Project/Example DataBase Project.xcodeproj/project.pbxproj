@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		910B82901830188D009B2635 /* NTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 910B828F1830188D009B2635 /* NTDatabase.m */; };
+		916377AD18303179009BD251 /* NTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 916377AC18303179009BD251 /* NTDatabase.m */; };
+		916377AE183031BC009BD251 /* NTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 916377AC18303179009BD251 /* NTDatabase.m */; };
 		9188F47C1825ACC000C2F2E7 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F47B1825ACC000C2F2E7 /* Person.m */; };
 		9188F4801825ACDD00C2F2E7 /* Database+Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F47F1825ACDD00C2F2E7 /* Database+Person.m */; };
 		9188F4861825B17300C2F2E7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9188F4851825B17300C2F2E7 /* Storyboard.storyboard */; };
@@ -41,8 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		910B828E1830188D009B2635 /* NTDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTDatabase.h; path = ../../../../NTCoreDataMultiThread/NTDatabase.h; sourceTree = "<group>"; };
-		910B828F1830188D009B2635 /* NTDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTDatabase.m; path = ../../../../NTCoreDataMultiThread/NTDatabase.m; sourceTree = "<group>"; };
+		916377AB18303179009BD251 /* NTDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTDatabase.h; path = ../NTCoreDataMultiThread/NTDatabase.h; sourceTree = SOURCE_ROOT; };
+		916377AC18303179009BD251 /* NTDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTDatabase.m; path = ../NTCoreDataMultiThread/NTDatabase.m; sourceTree = SOURCE_ROOT; };
 		9188F47A1825ACC000C2F2E7 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		9188F47B1825ACC000C2F2E7 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		9188F47E1825ACDD00C2F2E7 /* Database+Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Database+Person.h"; sourceTree = "<group>"; };
@@ -216,8 +217,8 @@
 		91C55CD81825996400959EAD /* Database Manager */ = {
 			isa = PBXGroup;
 			children = (
-				910B828E1830188D009B2635 /* NTDatabase.h */,
-				910B828F1830188D009B2635 /* NTDatabase.m */,
+				916377AB18303179009BD251 /* NTDatabase.h */,
+				916377AC18303179009BD251 /* NTDatabase.m */,
 				918AAC3E1825BDCA006166F1 /* Database.h */,
 			);
 			name = "Database Manager";
@@ -326,7 +327,7 @@
 				9188F48E1825B29900C2F2E7 /* MainViewController.m in Sources */,
 				9188F47C1825ACC000C2F2E7 /* Person.m in Sources */,
 				91C55CB11825985400959EAD /* main.m in Sources */,
-				910B82901830188D009B2635 /* NTDatabase.m in Sources */,
+				916377AD18303179009BD251 /* NTDatabase.m in Sources */,
 				9188F4801825ACDD00C2F2E7 /* Database+Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916377AE183031BC009BD251 /* NTDatabase.m in Sources */,
 				91C55CCE1825985400959EAD /* Example_DataBase_ProjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
