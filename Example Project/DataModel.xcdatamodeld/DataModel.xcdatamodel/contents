@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Person" representedClassName="Person" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Client" representedClassName="Client" parentEntity="Person" syncable="YES">
+        <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="client" inverseEntity="Project" syncable="YES"/>
+    </entity>
+    <entity name="Developer" representedClassName="Developer" parentEntity="Person" syncable="YES">
+        <attribute name="experience" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="platform" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="developers" inverseEntity="Project" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName="Person" isAbstract="YES" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Project" representedClassName="Project" syncable="YES">
+        <attribute name="budget" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="projects" inverseEntity="Client" syncable="YES"/>
+        <relationship name="developers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Developer" inverseName="projects" inverseEntity="Developer" syncable="YES"/>
+        <relationship name="projectManagers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectManager" inverseName="projects" inverseEntity="ProjectManager" syncable="YES"/>
+    </entity>
+    <entity name="ProjectManager" representedClassName="ProjectManager" parentEntity="Person" syncable="YES">
+        <attribute name="skype" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="projectManagers" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Person" positionX="160" positionY="192" width="128" height="73"/>
+        <element name="Person" positionX="-162" positionY="279" width="128" height="73"/>
+        <element name="Project" positionX="718" positionY="243" width="128" height="133"/>
+        <element name="Developer" positionX="144" positionY="279" width="128" height="88"/>
+        <element name="ProjectManager" positionX="142" positionY="414" width="128" height="73"/>
+        <element name="Client" positionX="142" positionY="164" width="128" height="58"/>
     </elements>
 </model>

@@ -10,7 +10,4 @@
 
 @interface MainViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *numberTextField;
-- (IBAction)okButtonClicked:(UIButton *)sender;
 @end

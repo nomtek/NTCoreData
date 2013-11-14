@@ -2,7 +2,7 @@
 //  Person.h
 //  Example DataBase Project
 //
-//  Created by Adam Szeptycki on 02/11/13.
+//  Created by Adam Szeptycki on 13/11/13.
 //  Copyright (c) 2013 Adam Szeptycki. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 @interface Person : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic) int16_t number;
+@property (nonatomic) int16_t id;
 
-+ (NSString*)entityName;
 @end

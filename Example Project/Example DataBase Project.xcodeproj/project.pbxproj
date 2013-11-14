@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		916377AD18303179009BD251 /* NTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 916377AC18303179009BD251 /* NTDatabase.m */; };
 		916377AE183031BC009BD251 /* NTDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 916377AC18303179009BD251 /* NTDatabase.m */; };
-		9188F47C1825ACC000C2F2E7 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F47B1825ACC000C2F2E7 /* Person.m */; };
-		9188F4801825ACDD00C2F2E7 /* Database+Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F47F1825ACDD00C2F2E7 /* Database+Person.m */; };
 		9188F4861825B17300C2F2E7 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9188F4851825B17300C2F2E7 /* Storyboard.storyboard */; };
 		9188F48B1825B28800C2F2E7 /* PersonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F48A1825B28800C2F2E7 /* PersonCell.m */; };
 		9188F48E1825B29900C2F2E7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9188F48D1825B29900C2F2E7 /* MainViewController.m */; };
@@ -29,6 +27,17 @@
 		91C55CC41825985400959EAD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91C55CA81825985400959EAD /* CoreData.framework */; };
 		91C55CCC1825985400959EAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91C55CCA1825985400959EAD /* InfoPlist.strings */; };
 		91C55CCE1825985400959EAD /* Example_DataBase_ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C55CCD1825985400959EAD /* Example_DataBase_ProjectTests.m */; };
+		91E0EAFC183395CD00DCAABF /* Developer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EAFB183395CD00DCAABF /* Developer.m */; };
+		91E0EAFF183395CD00DCAABF /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EAFE183395CD00DCAABF /* Project.m */; };
+		91E0EB02183395CD00DCAABF /* ProjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB01183395CD00DCAABF /* ProjectManager.m */; };
+		91E0EB05183395CE00DCAABF /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB04183395CD00DCAABF /* Client.m */; };
+		91E0EB08183395CE00DCAABF /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB07183395CE00DCAABF /* Person.m */; };
+		91E0EB0B183397CD00DCAABF /* Database+Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB0A183397CD00DCAABF /* Database+Client.m */; };
+		91E0EB1118339C7F00DCAABF /* NSManagedObject+EntityName.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB1018339C7F00DCAABF /* NSManagedObject+EntityName.m */; };
+		91E0EB1418339FF200DCAABF /* Database+ProjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB1318339FF200DCAABF /* Database+ProjectManager.m */; };
+		91E0EB171833A34800DCAABF /* Database+Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB161833A34800DCAABF /* Database+Project.m */; };
+		91E0EB1A1833A77C00DCAABF /* Database+Developer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB191833A77B00DCAABF /* Database+Developer.m */; };
+		91E0EB1F1833C0BC00DCAABF /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E0EB1E1833C0BC00DCAABF /* ProjectsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +53,6 @@
 /* Begin PBXFileReference section */
 		916377AB18303179009BD251 /* NTDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTDatabase.h; path = ../NTCoreDataMultiThread/NTDatabase.h; sourceTree = SOURCE_ROOT; };
 		916377AC18303179009BD251 /* NTDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTDatabase.m; path = ../NTCoreDataMultiThread/NTDatabase.m; sourceTree = SOURCE_ROOT; };
-		9188F47A1825ACC000C2F2E7 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		9188F47B1825ACC000C2F2E7 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		9188F47E1825ACDD00C2F2E7 /* Database+Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Database+Person.h"; sourceTree = "<group>"; };
-		9188F47F1825ACDD00C2F2E7 /* Database+Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Database+Person.m"; sourceTree = "<group>"; };
 		9188F4851825B17300C2F2E7 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Storyboards/Storyboard.storyboard; sourceTree = "<group>"; };
 		9188F4891825B28800C2F2E7 /* PersonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCell.h; sourceTree = "<group>"; };
 		9188F48A1825B28800C2F2E7 /* PersonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCell.m; sourceTree = "<group>"; };
@@ -72,6 +77,28 @@
 		91C55CC91825985400959EAD /* Example DataBase ProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Example DataBase ProjectTests-Info.plist"; sourceTree = "<group>"; };
 		91C55CCB1825985400959EAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		91C55CCD1825985400959EAD /* Example_DataBase_ProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Example_DataBase_ProjectTests.m; sourceTree = "<group>"; };
+		91E0EAFA183395CD00DCAABF /* Developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Developer.h; path = Entities/Developer.h; sourceTree = "<group>"; };
+		91E0EAFB183395CD00DCAABF /* Developer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Developer.m; path = Entities/Developer.m; sourceTree = "<group>"; };
+		91E0EAFD183395CD00DCAABF /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Project.h; path = Entities/Project.h; sourceTree = "<group>"; };
+		91E0EAFE183395CD00DCAABF /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Project.m; path = Entities/Project.m; sourceTree = "<group>"; };
+		91E0EB00183395CD00DCAABF /* ProjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectManager.h; path = Entities/ProjectManager.h; sourceTree = "<group>"; };
+		91E0EB01183395CD00DCAABF /* ProjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectManager.m; path = Entities/ProjectManager.m; sourceTree = "<group>"; };
+		91E0EB03183395CD00DCAABF /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Client.h; path = Entities/Client.h; sourceTree = "<group>"; };
+		91E0EB04183395CD00DCAABF /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Client.m; path = Entities/Client.m; sourceTree = "<group>"; };
+		91E0EB06183395CE00DCAABF /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = Entities/Person.h; sourceTree = "<group>"; };
+		91E0EB07183395CE00DCAABF /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = Entities/Person.m; sourceTree = "<group>"; };
+		91E0EB09183397CD00DCAABF /* Database+Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Database+Client.h"; sourceTree = "<group>"; };
+		91E0EB0A183397CD00DCAABF /* Database+Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Database+Client.m"; sourceTree = "<group>"; };
+		91E0EB0F18339C7F00DCAABF /* NSManagedObject+EntityName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+EntityName.h"; sourceTree = "<group>"; };
+		91E0EB1018339C7F00DCAABF /* NSManagedObject+EntityName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+EntityName.m"; sourceTree = "<group>"; };
+		91E0EB1218339FF200DCAABF /* Database+ProjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Database+ProjectManager.h"; sourceTree = "<group>"; };
+		91E0EB1318339FF200DCAABF /* Database+ProjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Database+ProjectManager.m"; sourceTree = "<group>"; };
+		91E0EB151833A34800DCAABF /* Database+Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Database+Project.h"; sourceTree = "<group>"; };
+		91E0EB161833A34800DCAABF /* Database+Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Database+Project.m"; sourceTree = "<group>"; };
+		91E0EB181833A77B00DCAABF /* Database+Developer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Database+Developer.h"; path = "Example DataBase Project/Database/Database+Developer.h"; sourceTree = "<group>"; };
+		91E0EB191833A77B00DCAABF /* Database+Developer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Database+Developer.m"; path = "Example DataBase Project/Database/Database+Developer.m"; sourceTree = "<group>"; };
+		91E0EB1D1833C0BC00DCAABF /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
+		91E0EB1E1833C0BC00DCAABF /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +130,16 @@
 		9188F47D1825ACC800C2F2E7 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				9188F47A1825ACC000C2F2E7 /* Person.h */,
-				9188F47B1825ACC000C2F2E7 /* Person.m */,
+				91E0EB06183395CE00DCAABF /* Person.h */,
+				91E0EB07183395CE00DCAABF /* Person.m */,
+				91E0EB03183395CD00DCAABF /* Client.h */,
+				91E0EB04183395CD00DCAABF /* Client.m */,
+				91E0EB00183395CD00DCAABF /* ProjectManager.h */,
+				91E0EB01183395CD00DCAABF /* ProjectManager.m */,
+				91E0EAFD183395CD00DCAABF /* Project.h */,
+				91E0EAFE183395CD00DCAABF /* Project.m */,
+				91E0EAFA183395CD00DCAABF /* Developer.h */,
+				91E0EAFB183395CD00DCAABF /* Developer.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -114,6 +149,8 @@
 			children = (
 				9188F48C1825B29900C2F2E7 /* MainViewController.h */,
 				9188F48D1825B29900C2F2E7 /* MainViewController.m */,
+				91E0EB1D1833C0BC00DCAABF /* ProjectsViewController.h */,
+				91E0EB1E1833C0BC00DCAABF /* ProjectsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -130,6 +167,8 @@
 		91C55C961825985400959EAD = {
 			isa = PBXGroup;
 			children = (
+				91E0EB181833A77B00DCAABF /* Database+Developer.h */,
+				91E0EB191833A77B00DCAABF /* Database+Developer.m */,
 				91C55CAA1825985400959EAD /* Example DataBase Project */,
 				91C55CC71825985400959EAD /* Example DataBase ProjectTests */,
 				91C55CA11825985400959EAD /* Frameworks */,
@@ -205,11 +244,17 @@
 		91C55CD71825995B00959EAD /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				91E0EB0F18339C7F00DCAABF /* NSManagedObject+EntityName.h */,
+				91E0EB1018339C7F00DCAABF /* NSManagedObject+EntityName.m */,
 				918AAC431825C553006166F1 /* DataModel.xcdatamodeld */,
 				9188F47D1825ACC800C2F2E7 /* Entities */,
 				91C55CD81825996400959EAD /* Database Manager */,
-				9188F47E1825ACDD00C2F2E7 /* Database+Person.h */,
-				9188F47F1825ACDD00C2F2E7 /* Database+Person.m */,
+				91E0EB1218339FF200DCAABF /* Database+ProjectManager.h */,
+				91E0EB1318339FF200DCAABF /* Database+ProjectManager.m */,
+				91E0EB09183397CD00DCAABF /* Database+Client.h */,
+				91E0EB151833A34800DCAABF /* Database+Project.h */,
+				91E0EB161833A34800DCAABF /* Database+Project.m */,
+				91E0EB0A183397CD00DCAABF /* Database+Client.m */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -324,11 +369,20 @@
 				9188F48B1825B28800C2F2E7 /* PersonCell.m in Sources */,
 				918AAC451825C553006166F1 /* DataModel.xcdatamodeld in Sources */,
 				91C55CB51825985400959EAD /* AppDelegate.m in Sources */,
+				91E0EB171833A34800DCAABF /* Database+Project.m in Sources */,
+				91E0EB0B183397CD00DCAABF /* Database+Client.m in Sources */,
+				91E0EB1F1833C0BC00DCAABF /* ProjectsViewController.m in Sources */,
+				91E0EB1A1833A77C00DCAABF /* Database+Developer.m in Sources */,
+				91E0EAFF183395CD00DCAABF /* Project.m in Sources */,
 				9188F48E1825B29900C2F2E7 /* MainViewController.m in Sources */,
-				9188F47C1825ACC000C2F2E7 /* Person.m in Sources */,
+				91E0EAFC183395CD00DCAABF /* Developer.m in Sources */,
+				91E0EB08183395CE00DCAABF /* Person.m in Sources */,
 				91C55CB11825985400959EAD /* main.m in Sources */,
 				916377AD18303179009BD251 /* NTDatabase.m in Sources */,
-				9188F4801825ACDD00C2F2E7 /* Database+Person.m in Sources */,
+				91E0EB05183395CE00DCAABF /* Client.m in Sources */,
+				91E0EB02183395CD00DCAABF /* ProjectManager.m in Sources */,
+				91E0EB1418339FF200DCAABF /* Database+ProjectManager.m in Sources */,
+				91E0EB1118339C7F00DCAABF /* NSManagedObject+EntityName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

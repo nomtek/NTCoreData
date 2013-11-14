@@ -2,7 +2,7 @@
 //  Person.m
 //  Example DataBase Project
 //
-//  Created by Adam Szeptycki on 02/11/13.
+//  Created by Adam Szeptycki on 13/11/13.
 //  Copyright (c) 2013 Adam Szeptycki. All rights reserved.
 //
 
@@ -12,10 +12,6 @@
 @implementation Person
 
 @dynamic name;
-@dynamic number;
+@dynamic id;
 
-+ (NSString*)entityName
-{
-    return @"Person";
-}
 @end

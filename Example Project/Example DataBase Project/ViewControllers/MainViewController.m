@@ -10,23 +10,50 @@
 #import "PersonCell.h"
 #import "Person.h"
 #import "Database.h"
-@interface MainViewController ()
-@property (nonatomic,strong) NSMutableArray *peopleArray;
+#import "ProjectsViewController.h"
+@interface MainViewController () <NTDataBaseContextChangesNotifications>
+    @property (nonatomic,strong) NSMutableArray *peopleArray;
+    @property (nonatomic,assign) int offset;
 @end
+
+
+#define FETCH_LIMIT 2
 
 @implementation MainViewController
 
+- (void)mainContextDidInsertObjects:(NSSet*)objects
+{
+
+}
+
+- (void)mainContextDidDeleteObjects:(NSSet *)objects
+{
+
+}
+
+- (void)mainContextDidUpdateObjects:(NSSet *)objects
+{
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [[NTDatabase sharedInstance]fetchAllPeopleWithCompetionBlock:^(NSArray *result) {
-        self.peopleArray = [result mutableCopy];
-        [self.tableView reloadData];
-    }];
+    self.offset = 0;
+    self.peopleArray = [[NSMutableArray alloc]initWithCapacity:FETCH_LIMIT];
+    [self loadDevelopersWithLimit:FETCH_LIMIT andOffset:0];
+    [[NTDatabase sharedInstance]addDelegate:self];
 }
 
+-(void)loadDevelopersWithLimit:(int)limit andOffset:(int)offset
+{
+    [[NTDatabase sharedInstance]fetchAllDevelopersLimited:FETCH_LIMIT offset:self.offset WithCompetionBlock:^(NSArray *result) {
+        [self.peopleArray addObjectsFromArray:result];
+        [self.tableView reloadData];
+    }];
+
+    self.offset += FETCH_LIMIT;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -36,49 +63,41 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PersonCell* cell = [tableView dequeueReusableCellWithIdentifier:[PersonCell reuseIdentifier]];
-    Person *p = self.peopleArray[indexPath.row];
-    cell.nameLabel.text = p.name;
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d",p.number];
+    Developer *d = self.peopleArray[indexPath.row];
+    cell.nameLabel.text = d.name;
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d",d.id];
     return cell;
 }
 
-- (IBAction)okButtonClicked:(UIButton *)sender
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(![self.nameTextField.text isEqualToString:@""] && ![self.numberTextField.text isEqualToString:@""]){
-        NSString *name = self.nameTextField.text;
-        int number = [self.numberTextField.text intValue];
-        
-        [[NTDatabase sharedInstance]addPersonWithName:name andNumber:number withCompetionBlock:^(NSArray *result) {
-            [self.tableView beginUpdates];
-            if(!self.peopleArray){
-                self.peopleArray = [[NSMutableArray alloc]initWithCapacity:1];
-            }
-            [self.peopleArray addObject:[result lastObject]];
-            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.peopleArray.count-1 inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            self.numberTextField.text = @"";
-            self.nameTextField.text = @"";
-            [self.tableView endUpdates];
-        }];
-    }
-}
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    [self performSegueWithIdentifier:@"firstSegueue" sender:self.peopleArray[indexPath.row]];
 }
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.tableView beginUpdates];
-        Person *p = self.peopleArray[indexPath.row];
-        [[NTDatabase sharedInstance] removePersonWithNumber:p.number withCompletionBlock:nil];
-        [self.peopleArray removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"firstSegueue"]){
+        ProjectsViewController *destinationVC = segue.destinationViewController;
+        destinationVC.dev  = (Developer*)sender;
     }
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView
 {
-    [self.view endEditing:YES];
+
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+
+    float reload_distance = 10;
+    if(y > h + reload_distance) {
+        [self loadDevelopersWithLimit:FETCH_LIMIT andOffset:self.offset];
+    }
 }
 @end

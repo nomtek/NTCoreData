@@ -7,6 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSManagedObject+EntityName.h"
+@protocol NTDataBaseContextChangesNotifications
+
+@optional
+- (void)mainContextDidInsertObjects:(NSSet*)objects;
+- (void)mainContextDidDeleteObjects:(NSSet *)objects;
+- (void)mainContextDidUpdateObjects:(NSSet *)objects;
+
+@end
+
+
 /**
 @brief Database class provides mechanism that will allow to make async calls for database using Core Data Framework. Class provides 3 layers of NSManagedObjectContext (called later context) that are orginised as follows:
  1. MasterContext - master context is context associated with one of background queues. Is populated by data from (and is linked to)  SQLite file. Every time app is going to background app will save all acomodated data to SQLite file. Note if you don't invoke saveMasterContext directly and your app crash your data won't save (so if you have any important information you should invoke it).
@@ -14,10 +25,8 @@
  3. Background contexts - are context created for each task and are child context for MainContext. Each change made in them is pushed to MainContext.
  */
 
-
-
-
 @interface NTDatabase : NSObject
+@property (nonatomic,readonly) NSManagedObjectContext *mainContext;
 /**
  Creates singleton of Database class that is responsible for managing asyc core data stack handling.
  @returns Database class singleton
@@ -54,7 +63,7 @@
 
 - (NSArray*)getObjectIDsArrayFromEntitesArray:(NSArray*)entitiesArray;
 
-#pragma mark counting in background
+- (void)addDelegate:(id<NTDataBaseContextChangesNotifications>)newDelegate;
 
 /**
  Saves mainContext pushing changes to masterContext. This function will wait till all saves invoked before callinkg this function are completed, but it wont block thread that called this function.
@@ -66,3 +75,5 @@
 - (void)saveMasterContext;
 
 @end
+
+

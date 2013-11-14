@@ -25,6 +25,8 @@
 
 
 @property (nonatomic) UIBackgroundTaskIdentifier backgroundSQliteSaveTask;
+
+@property (nonatomic,strong) NSHashTable *delegates;
 @end
 
 @implementation NTDatabase
@@ -34,11 +36,13 @@
 static NTDatabase* _sharedInstance=nil;
 
 
+
 + (id)sharedInstance
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedInstance = [[NTDatabase alloc] init];
+
     });
     return _sharedInstance;
 }
@@ -51,13 +55,14 @@ static NTDatabase* _sharedInstance=nil;
         _backgroundCoreDataQueue = dispatch_queue_create("com.nomtek.backgroundDataBaseThread", DISPATCH_QUEUE_CONCURRENT);
         _masterCodeDataQueue = dispatch_queue_create("com.nomtek.masterDataBaseThread", DISPATCH_QUEUE_CONCURRENT);
         _backgroundSQliteSaveTask = UIBackgroundTaskInvalid;
-        [self addSelfAsApplicationWillResignActive];
+        [self addSelfAsApplicationWillResignActiveNotification];
+
     }
     return self;
 }
 
 
--(void)addSelfAsApplicationWillResignActive
+-(void)addSelfAsApplicationWillResignActiveNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive) name:UIApplicationWillResignActiveNotification object:nil];
 }
@@ -238,10 +243,8 @@ static NTDatabase* _sharedInstance=nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        dispatch_sync(dispatch_get_main_queue(), ^{
             _mainContext = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSMainQueueConcurrencyType];
             _mainContext.parentContext = self.masterContext;
-        });
     });
     return _mainContext;
 }
@@ -300,4 +303,64 @@ static NTDatabase* _sharedInstance=nil;
     }];
     [self saveMasterContext];
 }
+
+#pragma mark - Context Notification Methods
+
+-(void)registerForContextChangesNotifications
+{
+    dispatch_barrier_async(self.backgroundCoreDataQueue, ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainContextDidChanged:) name:NSManagedObjectContextObjectsDidChangeNotification object:self.mainContext];
+        });
+    });
+}
+
+-(void)unregisterFromContextChangesNotifications
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:self.mainContext];
+}
+
+-(void)mainContextDidChanged:(NSNotification*)notification
+{
+    for(id<NTDataBaseContextChangesNotifications> delegate in self.delegates){
+        [self notifyInsertDelegate:delegate withNotification:notification];
+        [self notifyUpdateDelegate:delegate withNotification:notification];
+        [self notifyDeleteDelegate:delegate withNotification:notification];
+    }
+}
+
+-(void)notifyDeleteDelegate:(id)delegate withNotification:(NSNotification*)notification
+{
+    if([delegate respondsToSelector:@selector(mainContextDidDeleteObjects:)]){
+        NSSet *deletedObjects = [[notification userInfo] objectForKey:NSDeletedObjectsKey];
+        [delegate mainContextDidDeleteObjects:deletedObjects];
+    }
+}
+
+-(void)notifyUpdateDelegate:(id)delegate withNotification:(NSNotification*)notification
+{
+    if([delegate respondsToSelector:@selector(mainContextDidUpdateObjects:)]){
+        NSSet *updatedObjects = [[notification userInfo] objectForKey:NSUpdatedObjectsKey];
+        [delegate mainContextDidUpdateObjects:updatedObjects];
+    }
+}
+
+-(void)notifyInsertDelegate:(id)delegate withNotification:(NSNotification*)notification
+{
+    if([delegate respondsToSelector:@selector(mainContextDidInsertObjects:)]){
+        NSSet *insertedObjects = [[notification userInfo] objectForKey:NSInsertedObjectsKey];
+        [delegate mainContextDidInsertObjects:insertedObjects];
+    }
+}
+
+
+- (void)addDelegate:(id<NTDataBaseContextChangesNotifications>)newDelegate
+{
+    if(!self.delegates){
+        [self registerForContextChangesNotifications];
+        self.delegates = [NSHashTable weakObjectsHashTable];
+    }
+    [self.delegates addObject:newDelegate];
+}
+
 @end

@@ -7,15 +7,38 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Database.h"
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
++ (NSString*)generateRandomString:(int)num {
+    NSMutableString* string = [NSMutableString stringWithCapacity:num];
+    for (int i = 0; i < num; i++) {
+        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
+    }
+    return string;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    for (int i = 0; i<100; ++i) {
+//        NSString *devName = [NSString stringWithFormat:@"Developer: %@",[AppDelegate generateRandomString:6]];
+//        NSString *platform = [AppDelegate generateRandomString:2];
+//        NSMutableSet *projects = [[NSMutableSet alloc]initWithCapacity:100];
+//        for (int j = 0; j<10; ++j) {
+//            NSString *projectName = [NSString stringWithFormat:@"Project: %@",[AppDelegate generateRandomString:6]];
+//            id c = [[NTDatabase sharedInstance] mainContext];
+//            NSManagedObjectID *objectId = [[NTDatabase sharedInstance]addProjectWithName:projectName budget:j*2 andID:j inContext:c];
+//            NSManagedObject *object = [[[NTDatabase sharedInstance] mainContext] objectWithID:objectId];
+//            [projects addObject:object];
+//        }
+//        [[NTDatabase sharedInstance] addDeveloperWithName:devName andID:i withPlatform:platform withExperience:i%5 andProjects:projects withCompetionBlock:nil];
+//    }
+
     return YES;
 }
 
