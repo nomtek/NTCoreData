@@ -111,6 +111,7 @@ static NTDatabase* _sharedInstance=nil;
     NSLog(@"Started fetching");
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc]initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [context setParentContext:self.mainContext];
+    context.undoManager = nil;
     NSArray *objectsId = fetchBlock(context);
     return objectsId;
 }

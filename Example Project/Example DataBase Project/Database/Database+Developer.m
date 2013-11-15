@@ -14,10 +14,8 @@
 -(void)fetchAllDevelopersLimited:(int)limit offset:(int)offset WithCompetionBlock:(void (^)(NSArray*))completion
 {
     NSArray* (^fetchBlock)(NSManagedObjectContext*)=^(NSManagedObjectContext *context){
-        NSFetchRequest* request = [[NSFetchRequest alloc] init];
-        [request setEntity:[NSEntityDescription entityForName:[Developer entityName] inManagedObjectContext:context]];
-//        NSFetchRequest *request =  [NSFetchRequest fetchRequestWithEntityName:[Developer entityName]];
-//        [request setReturnsObjectsAsFaults:NO];
+
+        NSFetchRequest *request =  [NSFetchRequest fetchRequestWithEntityName:[Developer entityName]];
         request.fetchLimit = limit;
         [request setFetchOffset:offset];
         NSSortDescriptor *sortByID = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
