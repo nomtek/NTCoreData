@@ -19,61 +19,103 @@
 
 
 /**
-@brief Database class provides mechanism that will allow to make async calls for database using Core Data Framework. Class provides 3 layers of NSManagedObjectContext (called later context) that are orginised as follows:
- 1. MasterContext - master context is context associated with one of background queues. Is populated by data from (and is linked to)  SQLite file. Every time app is going to background app will save all acomodated data to SQLite file. Note if you don't invoke saveMasterContext directly and your app crash your data won't save (so if you have any important information you should invoke it).
- 2. MainContext - is linked to MainQueue (same as UI) and it's child context to Master Context (1). Every change done in core data (save / update) is stored in this context and saved to Master context when saveMasterContext is called. This context is not directly linked to SQLite so saving data to file system won't block user interface
- 3. Background contexts - are context created for each task and are child context for MainContext. Each change made in them is pushed to MainContext.
+ @brief Database class provides mechanism that allows to make async calls to
+ database using Core Data Framework.
+
+ The class provides 3 layers of NSManagedObjectContext (from now on called
+ context) that are orginised as follows:
+
+ 1. MasterContext - master context is the context associated with one of
+    background queues. It's linked to the SQLite file and is populated with
+    data from it. Every time the app is goes background, it will save all
+    accomodated changes to SQLite file. Note that if you don't invoke
+    saveMasterContext directly and your app crashes, the data won't be saved.
+    You should invoke this method manually if you have important data to save. 
+ 2. MainContext - is linked to MainQueue (same as the UI) and it's a child
+    context of the MasterContext (1). Every change done in Core Data
+    (save/update) is stored in this context and saved to MasterContext when
+    saveMasterContext is called. This context is not directly linked to the
+    SQLite file so saving the data to file system won't block user interface.
+ 3. Background contexts - are contexts created for each task and are child
+    contexts of MainContext. Each change made in them is pushed to MainContext.
  */
 
 @interface NTDatabase : NSObject
 @property (nonatomic,readonly) NSManagedObjectContext *mainContext;
+
 /**
- Creates singleton of Database class that is responsible for managing asyc core data stack handling.
+ Creates singleton of the Database class that is responsible for
+ managing the async Core Data stack.
+
  @returns Database class singleton
  */
 + (id)sharedInstance;
 
 /**
- Saves data in background context and get NSManagedObjects that was save and are valid for use on MainQueue
- @param saveBlock block that will be executed on background task with created for this background NSManagedObjectContext
- @param completionBlock block that should be invoked with array of NSManagedObject valid for MainQueue
- @param idsArray array of ids of NSManagedObject that will be changed / created
+ Saves data in background context and gets NSManagedObject instances that were
+ saved and are valid for use in MainQueue.
+
+ @param saveBlock block that will be executed in the background task with the
+        newly created NSManagedObjectContext as the argument
+ @param completionBlock block that will be invoked with array of
+        NSManagedObject instances valid  for use in MainQueue
+ @param idsArray array of ids of NSManagedObject instances that will be
+        changed/created
  */
 - (void)saveDataInBackgroundWithContext:(void (^)(NSManagedObjectContext*context))saveBlock withArrayOfIds:(NSArray*)idsArray completion:(void (^)(NSArray*))completionBlock;
+
 /**
- Fetched data from database in background and then get NSManagedObjects valid to use on MainQueue
- @param fetchBlock block that will be executed on background task with created for this background NSManagedObjectContext it shuld return NSArray of NSManagedObjectIds that will later be used to get NSManagedObjects valid on Main Queue
- @param completionBlock block that will be invoked with fetched NSManagedObjects valid for MainQueue
+ Fetches data from database in background context and gets NSManagedObject
+ instances valid for use on MainQueue.
+
+ fetchBlock will be executed in the background task. The newly created
+ NSManagedObjectContext will be passed as the argument. It should return an
+ array of NSManagedObjectId instances that will later be used to get
+ NSManagedObject instances valid for use on MainQueue.
+
+ @param fetchBlock
+ @param completionBlock block that will be invoked with fetched NSManagedObject
+        instances valid for use on MainQueue
  */
 - (void)fetchDataInBackgroundWitchContext:(NSArray*(^)(NSManagedObjectContext *context)) fetchBlock withCompletion:(void(^) (NSArray*))completionBlock;
 
-
 /**
- Counts data in background queue and then invokes completion block with result
- @param countBlock block that takes as an argument context that will be created for him and then should fetch data and return count result
- @param completionBock block that will be invoked on main thread with result of count request
+ Counts data in background context and then invokes completion block with
+ the result.
+
+ @param countBlock block that will be executed in the background task with the
+        newly created NSManagedObjectContext as the argument. It should perform
+        a fetch and return count of rows.
+ @param completionBock block that will be invoked on main thread with the
+        result of countBlock.
  */
 - (void)countDataInBackgroundWithBlock:(NSUInteger(^) (NSManagedObjectContext*context)) countBlock withCompletion:(void (^) (NSUInteger))completionBlock;
 
 /**
- Returns array of NSManagedObjectIDs corresponding to recived array of NSManagedObjects
- @param entitiesArray array NSManagedObject
- @returns resultArray array of NSManagedObjectIDs
- */
+ Returns array of NSManagedObjectID instancess corresponding to received
+ array of NSManagedObject instances.
 
+ @param entitiesArray array of NSManagedObject instances
+ @returns array of NSManagedObjectID instances
+ */
 - (NSArray*)getObjectIDsArrayFromEntitesArray:(NSArray*)entitiesArray;
 
+/**
+ I HAZ NO DOCZORZ! FIXME PLZ
+ */
 - (void)addDelegate:(id<NTDataBaseContextChangesNotifications>)newDelegate;
 
 /**
- Saves mainContext pushing changes to masterContext. This function will wait till all saves invoked before callinkg this function are completed, but it wont block thread that called this function.
+ Saves the MainContext pushing changes to MasterContext. This function will
+ wait until all saves started before calling it are completed. It won't block
+ the calling thread.
 */
 - (void)saveMainContext;
+
 /**
- Saves masterContext and saves all changes to SQLite. Invoking this function automatically calls saveMainContext before saving masterContext.
+ Saves the MasterContext and saves all changes to the SQLite file. Invoking
+ this function automatically calls saveMainContext before saving the
+ MasterContext.
 */
 - (void)saveMasterContext;
-
 @end
-
-
