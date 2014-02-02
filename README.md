@@ -1,44 +1,30 @@
-ProjectName
+NTCoreData
 ===========
 
-ProjectName is a project that does something helpful. Please describe what it
-is exactly that ProjectName does.
+NTCoreData is small library that helps perform saves and fetches asynchronusly. Each save and fetch is done asynchrounsly. All heavy lifting regarding managing threads and context is done by NTDatabase class.
 
-Features
---------
+This library was inspiered by this [articel](http://floriankugler.com/blog/2013/4/29/concurrent-core-data-stack-performance-shootout) by Florian Kugler. For now it implements following stack in core data:
 
-This is a section that describes aspects of ProjectName's usefulness.
+![image](http://static.squarespace.com/static/5159eb3de4b01cd3b022715d/t/517e6219e4b0f470ac92f51a/1367237146374/stack%202.png?format=500w)
+
+We are going to implement last stack later on without changing class interface. So stay tuned.
 
 Example
 -------
-
-This is a section that proveides an example of ProjectName usage.
-
-```python
-import ProjectName
-
-
-def heres_an_example(something):
-    return ProjectName.do_something_useful_with(something)
-
-if __name__ == '__main__':
-    print heres_an_example('spam')
-```
+You can look at the example app to see how to perform fetches, saves, updates. Also please read documentation provided in class to fully understand how this works.
 
 TODO
 ----
 
-* Documentation,
-* Bug fixes.
+* Implement better examples;
+* Add to pods;
+* Implement Stack#3 from articel.
 
 Authors and Contributors
 ------------------------
 
-ProjectName is developed by [Tomasz Wójcik](http://www.bthlabs.pl/).
-
-For list of people who contributed to the project see `AUTHORS.md` file.
+Project is developed by [Nomtek](http://nomtek.com).	
 
 License
 -------
-
-ProjectName is licensed under the MIT License.
+NTCoreData is licensed under the [Apache 2.0 License.](http://www.apache.org/licenses/LICENSE-2.0.html)
