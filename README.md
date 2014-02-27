@@ -1,9 +1,9 @@
 NTCoreData
 ===========
 
-NTCoreData is small library that helps perform saves and fetches asynchronusly. Each save and fetch is done asynchrounsly. All heavy lifting regarding managing threads and context is done by NTDatabase class.
+NTCoreData is small library that helps perform saves and fetches asynchronously in Core Data. Each save and fetch is done asynchronously. All heavy lifting regarding managing threads and context is done by NTDatabase class.
 
-This library was inspiered by this [articel](http://floriankugler.com/blog/2013/4/29/concurrent-core-data-stack-performance-shootout) by Florian Kugler. For now it implements following stack in core data:
+This library was inspiered by this [article](http://floriankugler.com/blog/2013/4/29/concurrent-core-data-stack-performance-shootout) by Florian Kugler. For now it implements following stack in core data:
 
 ![image](http://static.squarespace.com/static/5159eb3de4b01cd3b022715d/t/517e6219e4b0f470ac92f51a/1367237146374/stack%202.png?format=500w)
 
